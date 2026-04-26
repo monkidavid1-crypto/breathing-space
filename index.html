@@ -189,6 +189,20 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
       <div class="mood-msg" id="mood-response"></div>
     </div>
 
+    <!-- 24/7 Chat Banner -->
+    <button onclick="navTo('chat')" style="width:100%;background:linear-gradient(135deg,#0f3460,#1a4a6b);border-radius:var(--radius-lg);padding:18px 20px;display:flex;align-items:center;gap:14px;border:none;cursor:pointer;margin-bottom:20px;text-align:left">
+      <div style="width:50px;height:50px;border-radius:16px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🧠</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+          <span style="width:7px;height:7px;background:#22c55e;border-radius:50%;display:inline-block"></span>
+          <p style="color:#86efac;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em">Disponible ahora · 24/7</p>
+        </div>
+        <p style="color:white;font-weight:700;font-size:17px;line-height:1.2">Habla con un psicólogo</p>
+        <p style="color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">Sin turno · Confidencial · Evaluación en 3 preguntas</p>
+      </div>
+      <span style="color:rgba(255,255,255,.4);font-size:22px">›</span>
+    </button>
+
     <!-- SOS Banner -->
     <button onclick="navTo('guias')" style="width:100%;background:linear-gradient(135deg,var(--primary),#1e6fa8);border-radius:var(--radius-lg);padding:22px 20px;display:flex;align-items:center;justify-content:space-between;border:none;cursor:pointer;margin-bottom:20px;text-align:left">
       <div>
@@ -288,6 +302,105 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
     </div>
 
     <div id="res-list" style="display:flex;flex-direction:column;gap:14px"></div>
+
+    <!-- VIDEOS MOTIVACIONALES -->
+    <div style="margin-top:32px;margin-bottom:8px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <span style="font-size:20px">🎬</span>
+        <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text)">Eres valioso/a — Míralo</h2>
+      </div>
+      <p style="font-size:13px;color:var(--text-mid);margin-bottom:20px;line-height:1.5">Videos seleccionados para recordarte tu valor, tu fortaleza y que no estás solo/a en este camino. Toca para ver en YouTube.</p>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <!-- Video 1 -->
+        <a href="https://www.youtube.com/watch?v=1Evwgu369Jw" target="_blank" style="text-decoration:none;display:block;background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border)">
+          <div style="position:relative;background:#0f3460;height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <img src="https://img.youtube.com/vi/1Evwgu369Jw/hqdefault.jpg" alt="Brené Brown" style="width:100%;height:100%;object-fit:cover;opacity:.85" onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 60%)"></div>
+            <div style="position:absolute;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center">
+              <div style="width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:18px solid #dc2626;margin-left:4px"></div>
+            </div>
+            <div style="position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,.7);color:white;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px">▶ Ver en YouTube</div>
+          </div>
+          <div style="padding:14px 16px">
+            <span style="background:#fdf2ec;color:var(--warm);font-size:10px;font-weight:700;padding:3px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em">Empatía · TED Talk</span>
+            <h3 style="font-weight:700;font-size:15px;color:var(--text);margin:8px 0 4px;line-height:1.4">El poder de la empatía — Brené Brown</h3>
+            <p style="font-size:13px;color:var(--text-mid);line-height:1.5">Una de las charlas más vistas del mundo sobre cómo conectar de verdad con quienes sufren.</p>
+          </div>
+        </a>
+
+        <!-- Video 2 -->
+        <a href="https://www.youtube.com/watch?v=UF8uR6Z6KLc" target="_blank" style="text-decoration:none;display:block;background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border)">
+          <div style="position:relative;background:#1a4a6b;height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <img src="https://img.youtube.com/vi/UF8uR6Z6KLc/hqdefault.jpg" alt="Escuela de vida" style="width:100%;height:100%;object-fit:cover;opacity:.85" onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 60%)"></div>
+            <div style="position:absolute;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center">
+              <div style="width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:18px solid #dc2626;margin-left:4px"></div>
+            </div>
+            <div style="position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,.7);color:white;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px">▶ Ver en YouTube</div>
+          </div>
+          <div style="padding:14px 16px">
+            <span style="background:var(--primary-pale);color:var(--primary);font-size:10px;font-weight:700;padding:3px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em">Autoestima · Steve Jobs</span>
+            <h3 style="font-weight:700;font-size:15px;color:var(--text);margin:8px 0 4px;line-height:1.4">Discurso de Stanford — Vive tu vida</h3>
+            <p style="font-size:13px;color:var(--text-mid);line-height:1.5">El discurso más inspirador sobre el tiempo, el propósito y el valor de cada día que vivimos.</p>
+          </div>
+        </a>
+
+        <!-- Video 3 -->
+        <a href="https://www.youtube.com/watch?v=NDQ1Mi5I4rg" target="_blank" style="text-decoration:none;display:block;background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border)">
+          <div style="position:relative;background:#3d8b6e;height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <img src="https://img.youtube.com/vi/NDQ1Mi5I4rg/hqdefault.jpg" alt="Mindfulness" style="width:100%;height:100%;object-fit:cover;opacity:.85" onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 60%)"></div>
+            <div style="position:absolute;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center">
+              <div style="width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:18px solid #dc2626;margin-left:4px"></div>
+            </div>
+            <div style="position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,.7);color:white;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px">▶ Ver en YouTube</div>
+          </div>
+          <div style="padding:14px 16px">
+            <span style="background:var(--green-pale);color:var(--green);font-size:10px;font-weight:700;padding:3px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em">Mindfulness · Meditación</span>
+            <h3 style="font-weight:700;font-size:15px;color:var(--text);margin:8px 0 4px;line-height:1.4">Meditación guiada para soltar el estrés</h3>
+            <p style="font-size:13px;color:var(--text-mid);line-height:1.5">10 minutos para resetear tu mente. Puedes hacerlo ahora mismo, donde estés.</p>
+          </div>
+        </a>
+
+        <!-- Video 4 -->
+        <a href="https://www.youtube.com/watch?v=w8DR7wQhkI0" target="_blank" style="text-decoration:none;display:block;background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border)">
+          <div style="position:relative;background:#546073;height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <img src="https://img.youtube.com/vi/w8DR7wQhkI0/hqdefault.jpg" alt="Salud mental" style="width:100%;height:100%;object-fit:cover;opacity:.85" onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 60%)"></div>
+            <div style="position:absolute;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center">
+              <div style="width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:18px solid #dc2626;margin-left:4px"></div>
+            </div>
+            <div style="position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,.7);color:white;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px">▶ Ver en YouTube</div>
+          </div>
+          <div style="padding:14px 16px">
+            <span style="background:#f3f0ff;color:#6b5ca5;font-size:10px;font-weight:700;padding:3px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em">Salud mental</span>
+            <h3 style="font-weight:700;font-size:15px;color:var(--text);margin:8px 0 4px;line-height:1.4">Por qué todos deberían ver a un terapeuta</h3>
+            <p style="font-size:13px;color:var(--text-mid);line-height:1.5">Rompe el estigma. Buscar ayuda psicológica es un acto de inteligencia y amor propio.</p>
+          </div>
+        </a>
+
+        <!-- Video 5 — Especial -->
+        <a href="https://www.youtube.com/watch?v=qR1-8j7sOM8" target="_blank" style="text-decoration:none;display:block;background:linear-gradient(135deg,var(--primary-pale),var(--accent-pale));border-radius:var(--radius);overflow:hidden;border:2px solid var(--accent)">
+          <div style="position:relative;background:#0f3460;height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <img src="https://img.youtube.com/vi/qR1-8j7sOM8/hqdefault.jpg" alt="Eres suficiente" style="width:100%;height:100%;object-fit:cover;opacity:.85" onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%)"></div>
+            <div style="position:absolute;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.3)">
+              <div style="width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:21px solid #dc2626;margin-left:5px"></div>
+            </div>
+            <div style="position:absolute;top:12px;left:12px;background:var(--primary);color:white;font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px">💙 Especial</div>
+            <div style="position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,.7);color:white;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px">▶ Ver en YouTube</div>
+          </div>
+          <div style="padding:14px 16px">
+            <span style="background:white;color:var(--primary);font-size:10px;font-weight:700;padding:3px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em">💙 Para ti — Hoy</span>
+            <h3 style="font-weight:700;font-size:15px;color:var(--text);margin:8px 0 4px;line-height:1.4">Eres suficiente — Un mensaje para recordar</h3>
+            <p style="font-size:13px;color:var(--text-mid);line-height:1.5">Cuando sientas que no eres suficiente, que no puedes más — este video es para ti. Con cariño.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
   </div>
 </div>
 
@@ -406,15 +519,29 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
       <div class="online-dot"></div>
     </div>
     <div style="flex:1">
-      <p style="font-weight:700;color:var(--text);font-size:15px" id="chat-dr-name">Dra. Elena Kostic</p>
-      <div class="badge-online"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block"></span>En línea ahora</div>
+      <p style="font-weight:700;color:var(--text);font-size:15px" id="chat-dr-name">Dra. Elena Kostic · IA</p>
+      <div style="display:inline-flex;align-items:center;gap:5px;background:#dcfce7;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600;color:#15803d"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block"></span>Disponible 24/7 · Sin turno</div>
     </div>
-    <div style="background:var(--surface);border-radius:10px;padding:6px 10px;font-size:11px;color:var(--text-soft);font-weight:500;text-align:center">🔒<br/>Privado</div>
+    <div style="background:var(--primary-pale);border-radius:10px;padding:6px 10px;font-size:10px;color:var(--primary);font-weight:700;text-align:center;line-height:1.4">🧠<br/>Clínico</div>
   </div>
 
-  <div id="chat-messages" class="chat-messages"></div>
+  <!-- TRIAGE PROGRESS -->
+  <div id="triage-progress-bar" style="background:var(--white);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px">
+    <div style="flex:1"><div class="progress-bar"><div class="progress-fill" id="triage-prog-fill" style="width:0%"></div></div></div>
+    <span style="font-size:11px;color:var(--text-soft);font-weight:600;white-space:nowrap" id="triage-prog-label">Evaluación inicial</span>
+  </div>
 
-  <div class="chat-input-bar">
+  <div id="chat-messages" class="chat-messages" style="padding-bottom:200px"></div>
+
+  <!-- QUICK REPLIES -->
+  <div id="quick-replies" style="display:none;position:fixed;bottom:90px;left:0;right:0;padding:8px 16px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-top:1px solid var(--border)">
+    <div id="quick-replies-inner" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+  </div>
+
+  <!-- RESULT CARD -->
+  <div id="triage-result" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:50"></div>
+
+  <div class="chat-input-bar" id="chat-input-bar">
     <div class="chat-input-wrap">
       <textarea id="chat-ta" rows="1" placeholder="Escribe cómo te sientes..." onkeydown="chatKey(event)" oninput="resizeTA(this)"></textarea>
       <button class="chat-send" onclick="sendMsg()">
@@ -697,56 +824,348 @@ function confirmBooking(){
   navTo('confirmacion');
 }
 
-// ═══ CHAT ═══
-var chatResponses=[
-  {text:"Gracias por compartir eso conmigo. 💙 Lo que describes requiere valentía para ponerlo en palabras. ¿Puedes contarme un poco más? ¿Hace cuánto tiempo llevas sintiéndote así?",delay:1400},
-  {text:"Te escucho. Lo que sientes es completamente válido, y tiene mucho sentido que te genere malestar. Desde la psicología clínica, trabajamos con estas experiencias como señales importantes que merecen atención — no como debilidades. ¿Hay algo específico que haya desencadenado esto últimamente?",delay:1800},
-  {text:"Eso que describes suena como una carga muy pesada de llevar. 🌿 En estas situaciones, el sistema nervioso puede entrar en modo de \"alerta\" constante. Quisiera explorar contigo cómo está siendo eso para ti. ¿Cómo afecta tu sueño, tu concentración o tus relaciones?",delay:2000},
-  {text:"Entiendo. Es importante que sepas que no estás sola/solo en esto — lo que describes es una experiencia humana que muchas personas atraviesan. ¿Has podido hablar con alguien de confianza sobre cómo te has sentido?",delay:1600},
-  {text:"Gracias por la confianza que me estás dando. Eso que mencionas me parece muy relevante clínicamente. Antes de continuar, quisiera hacerte una pregunta directa: ¿estás en un lugar de seguridad emocional ahora mismo, o sientes que necesitas apoyo de urgencia?",delay:2200},
-  {text:"Muy bien. Lo que me cuentas me ayuda a entender mejor tu situación. Desde mi perspectiva clínica, lo que describes tiene solución — no tienes que quedarte en este estado. ¿Estarías dispuesta/o a trabajar en algunas estrategias concretas juntos?",delay:1800},
-  {text:"Perfecto. Te propongo algo para hacer ahora mismo: tómate 30 segundos para notar 3 cosas que puedes ver a tu alrededor. Es una técnica de anclaje que activa la corteza prefrontal y reduce la activación de la amígdala. ¿Lo probamos? Cuéntame qué ves. 🌿",delay:2000},
-  {text:"Me alegra mucho que estés aquí hablando. Recuerda que cada conversación como esta es un paso hacia el bienestar. Te recomiendo que agendemos una sesión formal para poder trabajar de manera más profunda y estructurada. ¿Te gustaría hacerlo?",delay:1600}
+// ═══ CHAT TRIAGE SYSTEM ═══
+var chatInit=false;
+var triageStep=0; // 0=not started, 1=q1, 2=q2, 3=q3, 4=complete
+var triageAnswers={}; // stores user answers
+var riskScore=0; // 0-10
+
+// TRIAGE QUESTION FLOW
+var triageFlow=[
+  {
+    // Step 1: Chief complaint + initial severity
+    question: "Hola, soy la Dra. Kostic. 💙 Estoy aquí para acompañarte. Para poder ayudarte de la mejor manera posible, necesito hacerte algunas preguntas importantes.\n\n**¿Qué te trajo aquí hoy?** Por favor elige la opción que mejor describe cómo te sientes:",
+    quick: [
+      {label:"😔 Me siento triste o sin esperanza",key:"tristeza",score:4},
+      {label:"😰 Ansiedad o ataques de pánico",key:"ansiedad",score:3},
+      {label:"😤 Estrés laboral intenso",key:"estres",score:2},
+      {label:"😶 Me siento vacío/a o desconectado/a",key:"vacio",score:4},
+      {label:"🆘 Pensamientos de hacerme daño",key:"crisis",score:9},
+      {label:"😴 No puedo dormir ni funcionar",key:"funcional",score:3}
+    ],
+    progress:33,
+    label:"Pregunta 1 de 3"
+  },
+  {
+    // Step 2: Duration + impact
+    question: "Gracias por contarme. Eso me ayuda mucho.\n\n¿**Cuánto tiempo** llevas sintiéndote así y cómo ha afectado tu vida diaria?",
+    quick: [
+      {label:"📅 Apenas hoy / esta semana",key:"agudo",score:1},
+      {label:"🗓️ Varias semanas (2-4 sem)",key:"subagudo",score:2},
+      {label:"📆 Meses o más",key:"cronico",score:4},
+      {label:"⚡ De repente, muy intenso",key:"agudo_intenso",score:5},
+      {label:"🏠 Ya no puedo trabajar/estudiar bien",key:"impacto_alto",score:3},
+      {label:"👥 He dejado de ver a mi gente",key:"aislamiento",score:3}
+    ],
+    progress:66,
+    label:"Pregunta 2 de 3"
+  },
+  {
+    // Step 3: Safety + support
+    question: "Última pregunta, muy importante:\n\n¿Tienes **pensamientos de hacerte daño** a ti mismo/a, o sientes que podrías estar en peligro?",
+    quick: [
+      {label:"✅ No, estoy a salvo",key:"seguro",score:0},
+      {label:"😟 Tengo pensamientos negativos pero no activos",key:"pasivo",score:3},
+      {label:"🆘 Sí, necesito ayuda urgente ahora",key:"crisis",score:10},
+      {label:"🤔 No estoy seguro/a",key:"incierto",score:4}
+    ],
+    progress:100,
+    label:"Pregunta 3 de 3"
+  }
 ];
+
 function initChat(){
-  var name=SEL_SPEC?SEL_SPEC.name:'Dra. Elena Kostic';
-  document.getElementById('chat-dr-name').textContent=name;
+  var name=SEL_SPEC?SEL_SPEC.name:"Dra. Elena Kostic";
+  document.getElementById("chat-dr-name").textContent=name;
   if(chatInit)return;
   chatInit=true;
-  var msgs=document.getElementById('chat-messages');
-  msgs.innerHTML='<div style="text-align:center;margin:8px 0"><div style="display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:6px 14px;font-size:11px;color:var(--text-soft)">🔒 Conversación privada y confidencial</div></div>';
-  setTimeout(function(){addBubble('in','Hola, soy '+name+'. 💙 Es un honor acompañarte hoy. Este es un espacio completamente confidencial y sin juicio. No hay respuestas correctas ni incorrectas. Solo cuéntame: ¿qué te trae aquí hoy y cómo te estás sintiendo en este momento?');},700);
+  triageStep=0;riskScore=0;triageAnswers={};
+  var msgs=document.getElementById("chat-messages");
+  msgs.innerHTML="";
+  setTimeout(function(){startTriage();},600);
 }
+
+function startTriage(){
+  triageStep=1;
+  updateTriageProgress(triageFlow[0].progress, triageFlow[0].label);
+  addBubble("in", triageFlow[0].question.replace(/\*\*/g,"").replace(/\n/g,"<br/>"));
+  setTimeout(function(){showQuickReplies(triageFlow[0].quick, 1);},400);
+}
+
+function updateTriageProgress(pct, label){
+  var fill=document.getElementById("triage-prog-fill");
+  var lbl=document.getElementById("triage-prog-label");
+  if(fill)fill.style.width=pct+"%";
+  if(lbl)lbl.textContent=label;
+}
+
+function showQuickReplies(options, step){
+  var container=document.getElementById("quick-replies");
+  var inner=document.getElementById("quick-replies-inner");
+  inner.innerHTML=options.map(function(o){
+    return "<button onclick=\"selectQuickReply("+JSON.stringify(o)+","+step+")\" style=\"background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:8px 14px;font-size:12px;font-weight:500;cursor:pointer;color:var(--text);font-family:'Inter',sans-serif;transition:.15s\" onmouseover=\"this.style.borderColor='var(--primary)';this.style.color='var(--primary)'\" onmouseout=\"this.style.borderColor='var(--border)';this.style.color='var(--text)\"\">"+o.label+"</button>";
+  }).join("");
+  container.style.display="block";
+}
+
+function hideQuickReplies(){
+  document.getElementById("quick-replies").style.display="none";
+}
+
+function selectQuickReply(option, step){
+  hideQuickReplies();
+  // Add user message
+  addBubble("out", option.label);
+  // Store answer and accumulate score
+  triageAnswers["q"+step]=option.key;
+  riskScore+=option.score;
+
+  // Check for immediate crisis
+  if(option.key==="crisis"||riskScore>=9){
+    setTimeout(function(){showCrisisProtocol();},800);
+    return;
+  }
+
+  // Proceed to next question
+  if(step===1){
+    setTimeout(function(){
+      updateTriageProgress(triageFlow[1].progress, triageFlow[1].label);
+      addBubble("in", triageFlow[1].question.replace(/\*\*/g,"").replace(/\n/g,"<br/>"));
+      setTimeout(function(){showQuickReplies(triageFlow[1].quick,2);},400);
+    },900);
+  } else if(step===2){
+    setTimeout(function(){
+      updateTriageProgress(triageFlow[2].progress, triageFlow[2].label);
+      addBubble("in", triageFlow[2].question.replace(/\*\*/g,"").replace(/\n/g,"<br/>"));
+      setTimeout(function(){showQuickReplies(triageFlow[2].quick,3);},400);
+    },900);
+  } else if(step===3){
+    setTimeout(function(){computeTriageResult();},900);
+  }
+}
+
+function computeTriageResult(){
+  updateTriageProgress(100,"Evaluación completa");
+  // Determine risk level
+  var level, color, icon, title, desc, actions;
+
+  if(riskScore>=7){
+    level="ALTA"; color="#dc2626"; icon="🔴";
+    title="Se requiere atención prioritaria";
+    desc="Basándome en tus respuestas, identifico señales que requieren atención profesional hoy mismo. No tienes que manejar esto sola/solo.";
+    actions=[
+      {type:"danger",label:"📞 Llamar Línea 106 ahora",action:"window.location.href='tel:106'"},
+      {type:"primary",label:"📲 Notificar a Bienestar + RRHH",action:"notifyHR('ALTA')"},
+      {type:"secondary",label:"💬 Continuar chat con IA 24/7",action:"restartChat()"}
+    ];
+  } else if(riskScore>=4){
+    level="MODERADA"; color="#d97706"; icon="🟡";
+    title="Apoyo profesional recomendado";
+    desc="Lo que describes merece atención especializada. No es urgente de crisis, pero sí es importante actuar esta semana para evitar que escale.";
+    actions=[
+      {type:"primary",label:"💬 Hablar con IA ahora (24/7)",action:"restartChat()"},
+      {type:"secondary",label:"📲 Notificar a Bienestar RRHH",action:"notifyHR('MODERADA')"},
+      {type:"info",label:"📅 Agendar sesión esta semana",action:"navTo('agendamiento')"}
+    ];
+  } else {
+    level="PREVENTIVA"; color:"#16a34a"; icon="🟢";
+    title="Seguimiento y fortalecimiento";
+    desc="Estás en un buen momento para fortalecer tus herramientas de bienestar. Lo que describes es manejable con apoyo y práctica regular.";
+    actions=[
+      {type:"secondary",label:"🧘 Guía de respiración y calma",action:"navTo('guias')"},
+      {type:"info",label:"📚 Recursos de autocuidado",action:"navTo('recursos')"},
+      {type:"ghost",label:"📅 Sesión preventiva (opcional)",action:"navTo('agendamiento')"}
+    ];
+  }
+
+  // Show assessment message
+  var msg="He completado tu evaluación. "+desc+"<br/><br/><strong>Nivel de atención recomendado: "+icon+" "+level+"</strong>";
+  addBubble("in", msg);
+
+  // Show result card after delay
+  setTimeout(function(){showResultCard(icon,title,desc,actions,color,level);},800);
+
+  // Hide regular input
+  document.getElementById("chat-input-bar").style.display="none";
+}
+
+function showResultCard(icon,title,desc,actions,color,level){
+  var btnHtml=actions.map(function(a){
+    var bg=a.type==="danger"?"#dc2626":a.type==="primary"?"var(--primary)":a.type==="secondary"?"var(--surface)":"var(--surface)";
+    var tc=a.type==="danger"||a.type==="primary"?"white":"var(--text-mid)";
+    var border=a.type==="secondary"||a.type==="info"||a.type==="ghost"?"1.5px solid var(--border)":"none";
+    return "<button onclick=\""+a.action+"\" style=\"width:100%;padding:13px;background:"+bg+";color:"+tc+";border:"+border+";border-radius:99px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;margin-bottom:8px;\">"+a.label+"</button>";
+  }).join("");
+
+  document.getElementById("triage-result").style.display="block";
+  document.getElementById("triage-result").innerHTML=
+    "<div style=\"background:white;border-top:3px solid "+color+";padding:20px 16px 32px;box-shadow:0 -8px 32px rgba(0,0,0,.12)\">" +
+    "<div style=\"display:flex;align-items:center;gap:10px;margin-bottom:8px\">" +
+    "<span style=\"font-size:24px\">"+icon+"</span>" +
+    "<div><p style=\"font-weight:700;font-size:16px;color:var(--text)\">"+title+"</p><p style=\"font-size:11px;color:"+color+";font-weight:600;text-transform:uppercase;letter-spacing:.06em\">Atención "+level+"</p></div></div>" +
+    "<div style=\"margin-bottom:16px\">"+btnHtml+"</div>" +
+    "<button onclick=\"restartChat()\" style=\"width:100%;padding:11px;background:none;border:none;color:var(--text-soft);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif\">↺ Nueva evaluación</button>" +
+    "</div>";
+}
+
+function showCrisisProtocol(){
+  hideQuickReplies();
+  updateTriageProgress(100,"⚠️ Protocolo de crisis activo");
+  addBubble("in","🆘 <strong>Activando protocolo de crisis.</strong><br/><br/>Lo que mencionas es muy importante y me preocupa tu bienestar. No estás sola/solo — hay personas que pueden ayudarte ahora mismo.<br/><br/>Estoy notificando automáticamente al equipo de Bienestar de "+COMPANY+" y activando las líneas de apoyo inmediato.");
+
+  // AUTO-NOTIFY immediately on crisis detection
+  setTimeout(function(){
+    sendWANotification("ALTA");
+    setTimeout(function(){sendEmailNotification("ALTA");},1500);
+  }, 600);
+
+  setTimeout(function(){
+    addBubble("in","📱 <strong>Notificación enviada</strong> al equipo de Bienestar por WhatsApp y correo. Alguien te contactará pronto. Mientras tanto, aquí tienes líneas de apoyo inmediato:");
+    setTimeout(function(){
+      document.getElementById("triage-result").style.display="block";
+      document.getElementById("triage-result").innerHTML=
+        "<div style='background:white;border-top:4px solid #dc2626;padding:20px 16px 32px;box-shadow:0 -8px 32px rgba(0,0,0,.15)'>"
+        +"<p style='font-size:11px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px'>⚠️ Protocolo de crisis activado — Notificaciones enviadas</p>"
+        +"<div style='background:#fee2e2;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between'>"
+        +"<div><p style='font-weight:700;color:#dc2626;font-size:15px'>🆘 Línea 106 — Crisis</p><p style='font-size:12px;color:#9b2c2c'>Gratuita · 24/7 · Confidencial</p></div>"
+        +"<a href='tel:106' style='background:#dc2626;color:white;padding:10px 18px;border-radius:99px;font-weight:700;font-size:14px;text-decoration:none'>Llamar</a></div>"
+        +"<div style='background:#fee2e2;border-radius:14px;padding:14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between'>"
+        +"<div><p style='font-weight:700;color:#dc2626;font-size:15px'>🚨 Emergencias — 123</p><p style='font-size:12px;color:#9b2c2c'>Si hay peligro inmediato</p></div>"
+        +"<a href='tel:123' style='background:#dc2626;color:white;padding:10px 18px;border-radius:99px;font-weight:700;font-size:14px;text-decoration:none'>Llamar</a></div>"
+        +"<div style='background:#e8f4fd;border-radius:14px;padding:12px;margin-bottom:14px;font-size:12px;color:var(--text-mid);line-height:1.6'>"
+        +"✅ <strong>Notificado:</strong> WhatsApp +57 317 450 2653<br/>✅ <strong>Notificado:</strong> "+ADMIN_EMAIL+"</div>"
+        +"<button onclick='restartChat()' style='width:100%;padding:11px;background:none;border:1.5px solid var(--border);border-radius:99px;color:var(--text-soft);font-size:13px;cursor:pointer;font-family:Inter,sans-serif'>↺ Nueva evaluación</button>"
+        +"</div>";
+      document.getElementById("chat-input-bar").style.display="none";
+    },400);
+  },2000);
+}
+
+// ═══ NOTIFICATION CONFIG ═══
+var ADMIN_WA  = "573174502653";
+var ADMIN_EMAIL = "YDTRUJILLO08@OUTLOOK.COM";
+var COMPANY   = "David Trujillo Asociados S.A.S.";
+
+function buildAlertSummary(level){
+  var hora = new Date().toLocaleString("es-CO",{timeZone:"America/Bogota",hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit",year:"numeric"});
+  var motivo = triageAnswers["q1"]||"no especificado";
+  var duracion = triageAnswers["q2"]||"no especificado";
+  var seguridad = triageAnswers["q3"]||"no especificado";
+  return {hora:hora, motivo:motivo, duracion:duracion, seguridad:seguridad, nivel:level};
+}
+
+function sendWANotification(level){
+  var s = buildAlertSummary(level);
+  var emoji = level==="ALTA"?"🔴":level==="MODERADA"?"🟡":"🟢";
+  var msg = "🆘 *ALERTA BREATHING SPACE*\n"
+    +"*Empresa:* "+COMPANY+"\n"
+    +"*Nivel de riesgo:* "+emoji+" "+level+"\n"
+    +"────────────────────\n"
+    +"*Motivo:* "+s.motivo+"\n"
+    +"*Duración:* "+s.duracion+"\n"
+    +"*Seguridad:* "+s.seguridad+"\n"
+    +"────────────────────\n"
+    +"*Hora:* "+s.hora+"\n"
+    +"⚠️ Se requiere contacto con el colaborador.\n"
+    +"*Plataforma:* Breathing Space App";
+  var url = "https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(msg);
+  window.open(url,"_blank");
+}
+
+function sendEmailNotification(level){
+  var s = buildAlertSummary(level);
+  var emoji = level==="ALTA"?"🔴 URGENTE":level==="MODERADA"?"🟡 MODERADO":"🟢 PREVENTIVO";
+  var subject = "[BREATHING SPACE] ALERTA "+emoji+" — "+COMPANY;
+  var body = "ALERTA DE BIENESTAR — BREATHING SPACE\n\n"
+    +"Empresa: "+COMPANY+"\n"
+    +"Nivel de riesgo: "+level+"\n"
+    +"Hora: "+s.hora+"\n\n"
+    +"DETALLE DE LA EVALUACIÓN:\n"
+    +"• Motivo de consulta: "+s.motivo+"\n"
+    +"• Duración del malestar: "+s.duracion+"\n"
+    +"• Estado de seguridad: "+s.seguridad+"\n\n"
+    +"ACCIÓN RECOMENDADA:\n"
+    +(level==="ALTA"
+      ?"Contactar al colaborador INMEDIATAMENTE. Considerar activar protocolo de crisis y coordinar con EPS/ARL.\n"
+      :level==="MODERADA"
+      ?"Contactar al colaborador hoy o mañana para ofrecer apoyo y agendar sesión con especialista.\n"
+      :"Hacer seguimiento preventivo esta semana.\n")
+    +"\n🔒 Información confidencial — Solo para personal autorizado de Bienestar.\n"
+    +"Plataforma: Breathing Space App";
+  window.location.href = "mailto:"+ADMIN_EMAIL
+    +"?subject="+encodeURIComponent(subject)
+    +"&body="+encodeURIComponent(body);
+}
+
+function notifyHR(level){
+  level = level || "ALTA";
+  // Send both notifications
+  sendWANotification(level);
+  setTimeout(function(){ sendEmailNotification(level); }, 1500);
+
+  // Show confirmation overlay
+  var overlay=document.createElement("div");
+  overlay.style.cssText="position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:24px";
+  overlay.innerHTML="<div style='background:white;border-radius:24px;padding:28px;max-width:340px;width:100%;text-align:center'>"
+    +"<div style='font-size:48px;margin-bottom:12px'>✅</div>"
+    +"<h3 style='font-family:Playfair Display,serif;font-size:20px;font-weight:700;margin-bottom:8px'>Notificaciones enviadas</h3>"
+    +"<p style='font-size:14px;color:var(--text-mid);line-height:1.6;margin-bottom:16px'>Se abrió WhatsApp y tu correo para alertar al equipo de Bienestar de <strong>"+COMPANY+"</strong>.</p>"
+    +"<div style='background:var(--surface);border-radius:14px;padding:14px;text-align:left;margin-bottom:16px;font-size:13px;line-height:1.8'>"
+    +"📱 WhatsApp → +57 317 450 2653<br/>📧 Email → "+ADMIN_EMAIL+"</div>"
+    +"<p style='font-size:11px;color:var(--text-soft);margin-bottom:20px'>🔒 Información protegida por confidencialidad laboral</p>"
+    +"<button onclick='this.closest(\"div\").parentElement.remove()' style='width:100%;padding:13px;background:var(--primary);color:white;border:none;border-radius:99px;font-family:Inter,sans-serif;font-weight:700;cursor:pointer;font-size:15px'>Entendido</button>"
+    +"</div>";
+  document.body.appendChild(overlay);
+}
+
+function restartChat(){
+  chatInit=false;triageStep=0;riskScore=0;triageAnswers={};
+  document.getElementById("triage-result").style.display="none";
+  document.getElementById("chat-input-bar").style.display="block";
+  document.getElementById("triage-prog-fill").style.width="0%";
+  document.getElementById("triage-prog-label").textContent="Evaluación inicial";
+  initChat();
+}
+
 function addBubble(type,text){
-  var msgs=document.getElementById('chat-messages');
-  var div=document.createElement('div');
-  div.className='msg-row '+(type==='out'?'out':'in');
+  var msgs=document.getElementById("chat-messages");
+  var div=document.createElement("div");
+  div.className="msg-row "+(type==="out"?"out":"in");
   var now=new Date();
-  var t=now.getHours()+':'+(now.getMinutes()<10?'0':'')+now.getMinutes();
-  div.innerHTML='<div class="bubble '+type+'">'+text+'</div><span class="msg-time">'+t+'</span>';
+  var t=now.getHours()+":"+(now.getMinutes()<10?"0":"")+now.getMinutes();
+  div.innerHTML="<div class='bubble "+type+"'>"+text+"</div><span class='msg-time'>"+t+"</span>";
   msgs.appendChild(div);
   msgs.scrollTop=9999;
 }
-function showTyping(){
-  var msgs=document.getElementById('chat-messages');
-  var div=document.createElement('div');
-  div.className='msg-row in';div.id='typing-row';
-  div.innerHTML='<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
-  msgs.appendChild(div);msgs.scrollTop=9999;
-}
-function hideTyping(){var t=document.getElementById('typing-row');if(t)t.remove();}
+
+var postTriageResponses=[
+  "Entiendo lo que me cuentas. 💙 Desde la psicología clínica, lo que describes tiene nombre y tiene solución. ¿Hay algo específico que haya pasado hoy que lo haya desencadenado?",
+  "Gracias por seguir aquí. Eso que sientes es completamente válido. ¿Cómo está siendo tu sueño y tu alimentación esta semana? Esas dos cosas impactan mucho en cómo procesamos el malestar.",
+  "Lo que me cuentas me ayuda a entenderte mejor. Una pregunta importante: ¿tienes personas cercanas — familia, amigos — con quienes puedas hablar sobre esto, o sientes que lo llevas sola/solo?",
+  "Recuerda que estoy aquí las 24 horas. No tienes que esperar a una cita para hablar. ¿Qué te ayudaría más en este momento — explorar lo que sientes, o ir a técnicas concretas para calmarte?",
+  "Hay una técnica que me gustaría compartirte: cuando el malestar aparezca, pon una mano en el pecho y di en voz baja 'estoy teniendo el pensamiento de que...'. Esa distancia ayuda muchísimo. ¿Lo probamos juntos?",
+  "Cada vez que decides hablar sobre esto en lugar de guardarlo, estás haciendo algo muy valioso por tu salud mental. ¿Cómo te sientes comparado con cuando empezamos esta conversación?"
+];
+var postIdx=0;
+
 function sendMsg(){
-  var ta=document.getElementById('chat-ta');
+  var ta=document.getElementById("chat-ta");
   var text=ta.value.trim();if(!text)return;
-  addBubble('out',text);ta.value='';ta.style.height='auto';
-  var resp=chatResponses[chatIdx%chatResponses.length];
-  chatIdx++;
-  var delay=resp.delay||1500;
-  setTimeout(showTyping,300);
-  setTimeout(function(){hideTyping();addBubble('in',resp.text);},delay);
+  addBubble("out",text);ta.value="";ta.style.height="auto";
+  var resp=postTriageResponses[postIdx%postTriageResponses.length];
+  postIdx++;
+  setTimeout(function(){
+    addBubble("in","<span style='display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--text-soft);margin-bottom:6px'>⌛ escribiendo...</span>");
+  },300);
+  setTimeout(function(){
+    var msgs=document.getElementById("chat-messages");
+    var last=msgs.lastChild;if(last)last.remove();
+    addBubble("in",resp);
+  },1600+Math.random()*800);
 }
-function chatKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
-function resizeTA(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px';}
+
+function chatKey(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMsg();}}
+function resizeTA(el){el.style.height="auto";el.style.height=Math.min(el.scrollHeight,100)+"px";}
 
 // ═══ QUOTES ═══
 var quotes=[
