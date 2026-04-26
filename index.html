@@ -525,6 +525,58 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
     <div style="background:var(--primary-pale);border-radius:10px;padding:6px 10px;font-size:10px;color:var(--primary);font-weight:700;text-align:center;line-height:1.4">🧠<br/>Clínico</div>
   </div>
 
+  <!-- IDENTIFICACIÓN — aparece antes del chat -->
+  <div id="id-form-overlay" style="position:fixed;inset:0;z-index:200;background:var(--surface);display:flex;flex-direction:column;justify-content:center;padding:24px;overflow-y:auto">
+    <div style="max-width:420px;margin:0 auto;width:100%">
+
+      <!-- Logo -->
+      <div style="text-align:center;margin-bottom:28px">
+        <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px">🧠</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px">Antes de comenzar</h2>
+        <p style="font-size:13px;color:var(--text-mid);line-height:1.6">Para poder brindarte la mejor atención y hacer seguimiento si lo necesitas, necesitamos verificar tu identidad.<br/><span style="color:var(--primary);font-weight:600">🔒 Tus datos son confidenciales.</span></p>
+      </div>
+
+      <!-- Campos -->
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px">
+
+        <div>
+          <label style="font-size:12px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Nombre completo *</label>
+          <input id="id-nombre" type="text" placeholder="Ej: María Pérez González"
+            style="width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:Inter,sans-serif;font-size:15px;color:var(--text);background:var(--white);outline:none;transition:.15s"
+            onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"/>
+        </div>
+
+        <div>
+          <label style="font-size:12px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Número de cédula *</label>
+          <input id="id-cedula" type="number" placeholder="Ej: 1234567890"
+            style="width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:Inter,sans-serif;font-size:15px;color:var(--text);background:var(--white);outline:none;transition:.15s"
+            onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"/>
+        </div>
+
+        <div>
+          <label style="font-size:12px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Número de teléfono *</label>
+          <input id="id-telefono" type="tel" placeholder="Ej: 300 123 4567"
+            style="width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:Inter,sans-serif;font-size:15px;color:var(--text);background:var(--white);outline:none;transition:.15s"
+            onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"/>
+        </div>
+
+      </div>
+
+      <!-- Error message -->
+      <div id="id-error" style="display:none;background:#fee2e2;color:#dc2626;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:500;margin-bottom:14px">⚠️ Por favor completa todos los campos antes de continuar.</div>
+
+      <!-- Botón -->
+      <button onclick="submitIdentity()" style="width:100%;padding:16px;background:linear-gradient(135deg,var(--primary),var(--accent));color:white;border:none;border-radius:99px;font-family:Inter,sans-serif;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(26,74,107,.25);margin-bottom:16px">
+        Iniciar sesión de apoyo →
+      </button>
+
+      <p style="text-align:center;font-size:11px;color:var(--text-soft);line-height:1.6">
+        🔒 Tus datos no serán compartidos públicamente.<br/>
+        Solo el equipo de Bienestar de <strong>David Trujillo Asociados S.A.S.</strong> tiene acceso en caso de urgencia.
+      </p>
+    </div>
+  </div>
+
   <!-- TRIAGE PROGRESS -->
   <div id="triage-progress-bar" style="background:var(--white);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px">
     <div style="flex:1"><div class="progress-bar"><div class="progress-fill" id="triage-prog-fill" style="width:0%"></div></div></div>
@@ -534,8 +586,9 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
   <div id="chat-messages" class="chat-messages" style="padding-bottom:200px"></div>
 
   <!-- QUICK REPLIES -->
-  <div id="quick-replies" style="display:none;position:fixed;bottom:90px;left:0;right:0;padding:8px 16px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-top:1px solid var(--border)">
-    <div id="quick-replies-inner" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+  <div id="quick-replies" style="display:none;position:fixed;bottom:90px;left:0;right:0;padding:10px 16px 12px;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);border-top:1px solid var(--border);z-index:60">
+    <p style="font-size:11px;color:var(--text-soft);font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Selecciona una opción:</p>
+    <div id="quick-replies-inner" style="display:flex;flex-direction:column;gap:8px"></div>
   </div>
 
   <!-- RESULT CARD -->
@@ -824,11 +877,52 @@ function confirmBooking(){
   navTo('confirmacion');
 }
 
-// ═══ CHAT TRIAGE SYSTEM ═══
+// ═══ IDENTIFICACIÓN DEL USUARIO ═══
+var USER_INFO = {nombre:"", cedula:"", telefono:""};
+
+function submitIdentity(){
+  var nombre   = document.getElementById("id-nombre").value.trim();
+  var cedula   = document.getElementById("id-cedula").value.trim();
+  var telefono = document.getElementById("id-telefono").value.trim();
+  var err      = document.getElementById("id-error");
+
+  if(!nombre || !cedula || !telefono){
+    err.style.display="block";
+    return;
+  }
+  err.style.display="none";
+
+  // Guardar datos
+  USER_INFO = {nombre:nombre, cedula:cedula, telefono:telefono};
+
+  // Ocultar formulario y mostrar chat
+  document.getElementById("id-form-overlay").style.display="none";
+
+  // Iniciar triage
+  startTriage();
+}
 var chatInit=false;
-var triageStep=0; // 0=not started, 1=q1, 2=q2, 3=q3, 4=complete
-var triageAnswers={}; // stores user answers
-var riskScore=0; // 0-10
+var triageStep=0;
+var triageAnswers={};
+var riskScore=0;
+
+function initChat(){
+  var name=SEL_SPEC?SEL_SPEC.name:"Dra. Elena Kostic";
+  document.getElementById("chat-dr-name").textContent=name+" · IA";
+  // Mostrar formulario de identidad cada vez
+  document.getElementById("id-form-overlay").style.display="flex";
+  document.getElementById("id-nombre").value="";
+  document.getElementById("id-cedula").value="";
+  document.getElementById("id-telefono").value="";
+  document.getElementById("id-error").style.display="none";
+  document.getElementById("chat-messages").innerHTML="";
+  document.getElementById("triage-result").style.display="none";
+  document.getElementById("chat-input-bar").style.display="block";
+  document.getElementById("triage-prog-fill").style.width="0%";
+  document.getElementById("triage-prog-label").textContent="Evaluación inicial";
+  document.getElementById("quick-replies").style.display="none";
+  chatInit=false;triageStep=0;riskScore=0;triageAnswers={};
+}
 
 // TRIAGE QUESTION FLOW
 var triageFlow=[
@@ -902,10 +996,22 @@ function updateTriageProgress(pct, label){
 function showQuickReplies(options, step){
   var container=document.getElementById("quick-replies");
   var inner=document.getElementById("quick-replies-inner");
-  inner.innerHTML=options.map(function(o){
-    return "<button onclick=\"selectQuickReply("+JSON.stringify(o)+","+step+")\" style=\"background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:8px 14px;font-size:12px;font-weight:500;cursor:pointer;color:var(--text);font-family:'Inter',sans-serif;transition:.15s\" onmouseover=\"this.style.borderColor='var(--primary)';this.style.color='var(--primary)'\" onmouseout=\"this.style.borderColor='var(--border)';this.style.color='var(--text)\"\">"+o.label+"</button>";
-  }).join("");
+  window._qOpts=options;
+  window._qStep=step;
+  var html="";
+  for(var i=0;i<options.length;i++){
+    html+='<button onclick="pickOpt('+i+')" style="background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:10px 16px;font-size:13px;font-weight:500;cursor:pointer;color:var(--text);font-family:Inter,sans-serif;transition:.15s;text-align:left;line-height:1.3">'+options[i].label+'</button>';
+  }
+  inner.innerHTML=html;
   container.style.display="block";
+  setTimeout(function(){
+    var msgs=document.getElementById("chat-messages");
+    msgs.scrollTop=msgs.scrollHeight;
+  },100);
+}
+
+function pickOpt(idx){
+  selectQuickReply(window._qOpts[idx], window._qStep);
 }
 
 function hideQuickReplies(){
@@ -944,6 +1050,13 @@ function selectQuickReply(option, step){
   }
 }
 
+function enableChatContinue(){
+  document.getElementById("triage-result").style.display="none";
+  document.getElementById("chat-input-bar").style.display="block";
+  document.getElementById("chat-ta").focus();
+  addBubble("in","Aquí estoy. Cuéntame más sobre lo que sientes. 💙 No hay apuro ni juicio.");
+}
+
 function computeTriageResult(){
   updateTriageProgress(100,"Evaluación completa");
   // Determine risk level
@@ -955,17 +1068,17 @@ function computeTriageResult(){
     desc="Basándome en tus respuestas, identifico señales que requieren atención profesional hoy mismo. No tienes que manejar esto sola/solo.";
     actions=[
       {type:"danger",label:"📞 Llamar Línea 106 ahora",action:"window.location.href='tel:106'"},
-      {type:"primary",label:"📲 Notificar a Bienestar + RRHH",action:"notifyHR('ALTA')"},
-      {type:"secondary",label:"💬 Continuar chat con IA 24/7",action:"restartChat()"}
+      {type:"primary",label:"💬 Continuar hablando",action:"enableChatContinue()"},
+      {type:"secondary",label:"📅 Agendar sesión urgente",action:"navTo('agendamiento')"}
     ];
   } else if(riskScore>=4){
     level="MODERADA"; color="#d97706"; icon="🟡";
     title="Apoyo profesional recomendado";
     desc="Lo que describes merece atención especializada. No es urgente de crisis, pero sí es importante actuar esta semana para evitar que escale.";
     actions=[
-      {type:"primary",label:"💬 Hablar con IA ahora (24/7)",action:"restartChat()"},
-      {type:"secondary",label:"📲 Notificar a Bienestar RRHH",action:"notifyHR('MODERADA')"},
-      {type:"info",label:"📅 Agendar sesión esta semana",action:"navTo('agendamiento')"}
+      {type:"primary",label:"💬 Continuar hablando ahora",action:"enableChatContinue()"},
+      {type:"secondary",label:"📅 Agendar sesión esta semana",action:"navTo('agendamiento')"},
+      {type:"info",label:"🧘 Guía de respiración",action:"navTo('guias')"}
     ];
   } else {
     level="PREVENTIVA"; color:"#16a34a"; icon="🟢";
@@ -981,6 +1094,9 @@ function computeTriageResult(){
   // Show assessment message
   var msg="He completado tu evaluación. "+desc+"<br/><br/><strong>Nivel de atención recomendado: "+icon+" "+level+"</strong>";
   addBubble("in", msg);
+
+  // NOTIFICACIÓN SILENCIOSA AL ADMIN si riesgo alto o moderado
+  if(riskScore>=4){ notifyAdminSilently(level); }
 
   // Show result card after delay
   setTimeout(function(){showResultCard(icon,title,desc,actions,color,level);},800);
@@ -1010,112 +1126,135 @@ function showResultCard(icon,title,desc,actions,color,level){
 
 function showCrisisProtocol(){
   hideQuickReplies();
-  updateTriageProgress(100,"⚠️ Protocolo de crisis activo");
-  addBubble("in","🆘 <strong>Activando protocolo de crisis.</strong><br/><br/>Lo que mencionas es muy importante y me preocupa tu bienestar. No estás sola/solo — hay personas que pueden ayudarte ahora mismo.<br/><br/>Estoy notificando automáticamente al equipo de Bienestar de "+COMPANY+" y activando las líneas de apoyo inmediato.");
+  updateTriageProgress(100,"💙 Estamos contigo");
 
-  // AUTO-NOTIFY immediately on crisis detection
+  // NOTIFICACIÓN SILENCIOSA AL ADMIN — el usuario no ve nada, no se abre nada
   setTimeout(function(){
-    sendWANotification("ALTA");
-    setTimeout(function(){sendEmailNotification("ALTA");},1500);
-  }, 600);
+    notifyAdminSilently("ALTA");
+  }, 500);
+
+  // El usuario sigue en el chat con apoyo continuo
+  addBubble("in","Lo que me estás contando es muy importante y me alegra que estés aquí hablando conmigo. 💙<br/><br/>Quiero que sepas que <strong>no estás solo/a</strong>. El equipo de bienestar ya fue alertado de que necesitas apoyo — alguien se pondrá en contacto contigo pronto.<br/><br/>Por ahora, estoy aquí contigo. ¿Puedes contarme cómo te estás sintiendo en este momento exacto?");
 
   setTimeout(function(){
-    addBubble("in","📱 <strong>Notificación enviada</strong> al equipo de Bienestar por WhatsApp y correo. Alguien te contactará pronto. Mientras tanto, aquí tienes líneas de apoyo inmediato:");
-    setTimeout(function(){
-      document.getElementById("triage-result").style.display="block";
-      document.getElementById("triage-result").innerHTML=
-        "<div style='background:white;border-top:4px solid #dc2626;padding:20px 16px 32px;box-shadow:0 -8px 32px rgba(0,0,0,.15)'>"
-        +"<p style='font-size:11px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px'>⚠️ Protocolo de crisis activado — Notificaciones enviadas</p>"
-        +"<div style='background:#fee2e2;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between'>"
-        +"<div><p style='font-weight:700;color:#dc2626;font-size:15px'>🆘 Línea 106 — Crisis</p><p style='font-size:12px;color:#9b2c2c'>Gratuita · 24/7 · Confidencial</p></div>"
-        +"<a href='tel:106' style='background:#dc2626;color:white;padding:10px 18px;border-radius:99px;font-weight:700;font-size:14px;text-decoration:none'>Llamar</a></div>"
-        +"<div style='background:#fee2e2;border-radius:14px;padding:14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between'>"
-        +"<div><p style='font-weight:700;color:#dc2626;font-size:15px'>🚨 Emergencias — 123</p><p style='font-size:12px;color:#9b2c2c'>Si hay peligro inmediato</p></div>"
-        +"<a href='tel:123' style='background:#dc2626;color:white;padding:10px 18px;border-radius:99px;font-weight:700;font-size:14px;text-decoration:none'>Llamar</a></div>"
-        +"<div style='background:#e8f4fd;border-radius:14px;padding:12px;margin-bottom:14px;font-size:12px;color:var(--text-mid);line-height:1.6'>"
-        +"✅ <strong>Notificado:</strong> WhatsApp +57 317 450 2653<br/>✅ <strong>Notificado:</strong> "+ADMIN_EMAIL+"</div>"
-        +"<button onclick='restartChat()' style='width:100%;padding:11px;background:none;border:1.5px solid var(--border);border-radius:99px;color:var(--text-soft);font-size:13px;cursor:pointer;font-family:Inter,sans-serif'>↺ Nueva evaluación</button>"
-        +"</div>";
-      document.getElementById("chat-input-bar").style.display="none";
-    },400);
-  },2000);
+    addBubble("in","Mientras hablamos, si en algún momento sientes que el malestar es muy intenso y necesitas ayuda inmediata, puedes llamar a la <strong>Línea 106</strong> — es gratuita, confidencial y disponible ahora mismo.<br/><br/>Pero primero cuéntame: ¿qué está pasando?");
+
+    // Mostrar solo líneas de emergencia como apoyo adicional, sin mostrar contacto admin
+    document.getElementById("triage-result").style.display="block";
+    document.getElementById("triage-result").innerHTML=
+      "<div style='background:white;border-top:3px solid #1a4a6b;padding:16px 16px 28px;box-shadow:0 -6px 24px rgba(0,0,0,.10)'>"
+      +"<p style='font-size:11px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px'>💙 Líneas de apoyo inmediato</p>"
+      +"<div style='display:flex;gap:10px;margin-bottom:12px'>"
+      +"<a href='tel:106' style='flex:1;background:#e8f4fd;color:#1a4a6b;padding:12px 10px;border-radius:14px;font-weight:700;font-size:13px;text-decoration:none;text-align:center;display:block'>🧠 Línea 106<br/><span style=\"font-size:10px;font-weight:400\">Salud mental · Gratis</span></a>"
+      +"<a href='tel:123' style='flex:1;background:#fee2e2;color:#dc2626;padding:12px 10px;border-radius:14px;font-weight:700;font-size:13px;text-decoration:none;text-align:center;display:block'>🚨 Línea 123<br/><span style=\"font-size:10px;font-weight:400\">Emergencias · 24/7</span></a>"
+      +"</div>"
+      +"<button onclick='enableChatAfterCrisis()' style='width:100%;padding:12px;background:var(--primary);color:white;border:none;border-radius:99px;font-family:Inter,sans-serif;font-size:14px;font-weight:600;cursor:pointer'>💬 Continuar hablando con el psicólogo</button>"
+      +"</div>";
+
+  }, 2000);
+}
+
+function enableChatAfterCrisis(){
+  // Oculta el panel inferior y habilita el input para seguir la conversación
+  document.getElementById("triage-result").style.display="none";
+  document.getElementById("chat-input-bar").style.display="block";
+  document.getElementById("chat-ta").focus();
+  addBubble("in","Aquí estoy. Cuéntame con tus propias palabras. 💙");
 }
 
 // ═══ NOTIFICATION CONFIG ═══
-var ADMIN_WA  = "573174502653";
+var ADMIN_WA    = "573174502653";
 var ADMIN_EMAIL = "YDTRUJILLO08@OUTLOOK.COM";
-var COMPANY   = "David Trujillo Asociados S.A.S.";
+var COMPANY     = "David Trujillo Asociados S.A.S.";
+
+// CALLMEBOT API KEY — para activar:
+// 1. Agrega +34 644 597 787 a tus contactos de WA
+// 2. Envíale: "I allow callmebot to send me messages"
+// 3. Recibirás tu apikey por WA — reemplaza "TU_APIKEY" aquí:
+var CALLMEBOT_KEY = "TU_APIKEY";
 
 function buildAlertSummary(level){
   var hora = new Date().toLocaleString("es-CO",{timeZone:"America/Bogota",hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit",year:"numeric"});
-  var motivo = triageAnswers["q1"]||"no especificado";
-  var duracion = triageAnswers["q2"]||"no especificado";
-  var seguridad = triageAnswers["q3"]||"no especificado";
-  return {hora:hora, motivo:motivo, duracion:duracion, seguridad:seguridad, nivel:level};
+  var motivos = {tristeza:"Tristeza / sin esperanza",ansiedad:"Ansiedad / ataques de pánico",estres:"Estrés laboral intenso",vacio:"Vacío / desconexión",crisis:"Pensamientos de hacerse daño",funcional:"No puede dormir / no funciona"};
+  var duraciones = {agudo:"Esta semana",subagudo:"2-4 semanas",cronico:"Meses o más",agudo_intenso:"Inicio súbito muy intenso",impacto_alto:"Impacto en trabajo/estudio",aislamiento:"Aislamiento social"};
+  var segurid = {seguro:"Está a salvo",pasivo:"Pensamientos negativos no activos",crisis:"REQUIERE INTERVENCIÓN URGENTE",incierto:"No sabe si está en peligro"};
+  return {
+    hora:hora,
+    nombre:   USER_INFO.nombre   || "No registrado",
+    cedula:   USER_INFO.cedula   || "No registrado",
+    telefono: USER_INFO.telefono || "No registrado",
+    motivo:   motivos[triageAnswers["q1"]]   || triageAnswers["q1"]   || "no especificado",
+    duracion: duraciones[triageAnswers["q2"]] || triageAnswers["q2"] || "no especificado",
+    seguridad:segurid[triageAnswers["q3"]]   || triageAnswers["q3"]   || "no especificado",
+    nivel:level
+  };
 }
 
-function sendWANotification(level){
+// ── Envío silencioso WA via Callmebot (no abre nada en el celular del usuario) ──
+function sendSilentWA(level){
   var s = buildAlertSummary(level);
   var emoji = level==="ALTA"?"🔴":level==="MODERADA"?"🟡":"🟢";
-  var msg = "🆘 *ALERTA BREATHING SPACE*\n"
-    +"*Empresa:* "+COMPANY+"\n"
-    +"*Nivel de riesgo:* "+emoji+" "+level+"\n"
-    +"────────────────────\n"
-    +"*Motivo:* "+s.motivo+"\n"
-    +"*Duración:* "+s.duracion+"\n"
-    +"*Seguridad:* "+s.seguridad+"\n"
-    +"────────────────────\n"
-    +"*Hora:* "+s.hora+"\n"
-    +"⚠️ Se requiere contacto con el colaborador.\n"
-    +"*Plataforma:* Breathing Space App";
-  var url = "https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(msg);
-  window.open(url,"_blank");
+  var msg = "🆘 ALERTA BREATHING SPACE"
+    +" | "+COMPANY
+    +" | Riesgo: "+emoji+" "+level
+    +" | COLABORADOR: "+s.nombre
+    +" | Cédula: "+s.cedula
+    +" | Tel: "+s.telefono
+    +" | Motivo: "+s.motivo
+    +" | Duración: "+s.duracion
+    +" | Seguridad: "+s.seguridad
+    +" | Hora: "+s.hora
+    +" | "+(level==="ALTA"?"⚠️ CONTACTAR INMEDIATAMENTE":"Hacer seguimiento pronto");
+
+  if(CALLMEBOT_KEY==="TU_APIKEY"){
+    console.warn("Breathing Space: configura tu CALLMEBOT_KEY para alertas WA");
+    return;
+  }
+  fetch("https://api.callmebot.com/whatsapp.php?phone="+ADMIN_WA+"&text="+encodeURIComponent(msg)+"&apikey="+CALLMEBOT_KEY,{mode:"no-cors"})
+    .catch(function(){});
 }
 
-function sendEmailNotification(level){
+// ── Envío silencioso Email via FormSubmit (no abre nada en el celular del usuario) ──
+function sendSilentEmail(level){
   var s = buildAlertSummary(level);
   var emoji = level==="ALTA"?"🔴 URGENTE":level==="MODERADA"?"🟡 MODERADO":"🟢 PREVENTIVO";
-  var subject = "[BREATHING SPACE] ALERTA "+emoji+" — "+COMPANY;
-  var body = "ALERTA DE BIENESTAR — BREATHING SPACE\n\n"
-    +"Empresa: "+COMPANY+"\n"
-    +"Nivel de riesgo: "+level+"\n"
-    +"Hora: "+s.hora+"\n\n"
-    +"DETALLE DE LA EVALUACIÓN:\n"
-    +"• Motivo de consulta: "+s.motivo+"\n"
-    +"• Duración del malestar: "+s.duracion+"\n"
-    +"• Estado de seguridad: "+s.seguridad+"\n\n"
-    +"ACCIÓN RECOMENDADA:\n"
-    +(level==="ALTA"
-      ?"Contactar al colaborador INMEDIATAMENTE. Considerar activar protocolo de crisis y coordinar con EPS/ARL.\n"
-      :level==="MODERADA"
-      ?"Contactar al colaborador hoy o mañana para ofrecer apoyo y agendar sesión con especialista.\n"
-      :"Hacer seguimiento preventivo esta semana.\n")
-    +"\n🔒 Información confidencial — Solo para personal autorizado de Bienestar.\n"
-    +"Plataforma: Breathing Space App";
-  window.location.href = "mailto:"+ADMIN_EMAIL
-    +"?subject="+encodeURIComponent(subject)
-    +"&body="+encodeURIComponent(body);
+  var accion = level==="ALTA"
+    ?"Contactar al colaborador INMEDIATAMENTE. Activar protocolo de crisis con EPS/ARL si es necesario."
+    :level==="MODERADA"
+    ?"Contactar al colaborador hoy o mañana. Agendar sesión con especialista esta semana."
+    :"Seguimiento preventivo esta semana.";
+
+  fetch("https://formsubmit.co/ajax/"+ADMIN_EMAIL,{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify({
+      _subject:"[BREATHING SPACE] ALERTA "+emoji+" — "+s.nombre+" — "+COMPANY,
+      empresa:              COMPANY,
+      nivel_riesgo:         level,
+      hora:                 s.hora,
+      colaborador_nombre:   s.nombre,
+      colaborador_cedula:   s.cedula,
+      colaborador_telefono: s.telefono,
+      motivo_consulta:      s.motivo,
+      duracion_malestar:    s.duracion,
+      estado_seguridad:     s.seguridad,
+      accion_recomendada:   accion,
+      nota:"Informacion confidencial — solo personal autorizado de Bienestar"
+    })
+  })
+  .then(function(r){console.log("Email alerta enviado:",r.status);})
+  .catch(function(e){console.log("Email fallback:",e);});
 }
 
-function notifyHR(level){
-  level = level || "ALTA";
-  // Send both notifications
-  sendWANotification(level);
-  setTimeout(function(){ sendEmailNotification(level); }, 1500);
+// ── Función principal: notifica en silencio, usuario nunca ve nada ──
+function notifyAdminSilently(level){
+  sendSilentWA(level);
+  sendSilentEmail(level);
+}
 
-  // Show confirmation overlay
-  var overlay=document.createElement("div");
-  overlay.style.cssText="position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:24px";
-  overlay.innerHTML="<div style='background:white;border-radius:24px;padding:28px;max-width:340px;width:100%;text-align:center'>"
-    +"<div style='font-size:48px;margin-bottom:12px'>✅</div>"
-    +"<h3 style='font-family:Playfair Display,serif;font-size:20px;font-weight:700;margin-bottom:8px'>Notificaciones enviadas</h3>"
-    +"<p style='font-size:14px;color:var(--text-mid);line-height:1.6;margin-bottom:16px'>Se abrió WhatsApp y tu correo para alertar al equipo de Bienestar de <strong>"+COMPANY+"</strong>.</p>"
-    +"<div style='background:var(--surface);border-radius:14px;padding:14px;text-align:left;margin-bottom:16px;font-size:13px;line-height:1.8'>"
-    +"📱 WhatsApp → +57 317 450 2653<br/>📧 Email → "+ADMIN_EMAIL+"</div>"
-    +"<p style='font-size:11px;color:var(--text-soft);margin-bottom:20px'>🔒 Información protegida por confidencialidad laboral</p>"
-    +"<button onclick='this.closest(\"div\").parentElement.remove()' style='width:100%;padding:13px;background:var(--primary);color:white;border:none;border-radius:99px;font-family:Inter,sans-serif;font-weight:700;cursor:pointer;font-size:15px'>Entendido</button>"
-    +"</div>";
-  document.body.appendChild(overlay);
+// notifyHR ya no se usa públicamente pero se conserva por compatibilidad
+function notifyHR(level){
+  notifyAdminSilently(level||"ALTA");
 }
 
 function restartChat(){
