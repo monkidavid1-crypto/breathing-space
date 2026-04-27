@@ -9,6 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Breathing Space">
 <link rel="manifest" href="manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
@@ -1162,99 +1163,153 @@ function enableChatAfterCrisis(){
   addBubble("in","Aquí estoy. Cuéntame con tus propias palabras. 💙");
 }
 
-// ═══ NOTIFICATION CONFIG ═══
-var ADMIN_WA    = "573174502653";
-var ADMIN_EMAIL = "YDTRUJILLO08@OUTLOOK.COM";
-var COMPANY     = "David Trujillo Asociados S.A.S.";
+// ═══════════════════════════════════════════════════
+// CONFIGURACIÓN DE ALERTAS — BREATHING SPACE ADMIN
+// ═══════════════════════════════════════════════════
+var ADMIN_WA      = "573174502653";
+var ADMIN_EMAIL   = "YDTRUJILLO08@OUTLOOK.COM";
+var COMPANY       = "David Trujillo Asociados S.A.S.";
 
-// CALLMEBOT API KEY — para activar:
-// 1. Agrega +34 644 597 787 a tus contactos de WA
-// 2. Envíale: "I allow callmebot to send me messages"
-// 3. Recibirás tu apikey por WA — reemplaza "TU_APIKEY" aquí:
+// EMAILJS — Configuración (ver instrucciones abajo)
+var EMAILJS_PUBLIC_KEY  = "TU_PUBLIC_KEY";   // paso 3
+var EMAILJS_SERVICE_ID  = "TU_SERVICE_ID";   // paso 4
+var EMAILJS_TEMPLATE_ID = "TU_TEMPLATE_ID";  // paso 5
+
+// CALLMEBOT — WhatsApp (ver instrucciones abajo)
 var CALLMEBOT_KEY = "TU_APIKEY";
+
+// ─────────────────────────────────────────
+// INSTRUCCIONES RÁPIDAS (una sola vez):
+//
+// EMAIL (EmailJS — gratis 200/mes):
+// 1. Ve a emailjs.com → Sign Up gratis
+// 2. Dashboard → "Add New Service" → Outlook/Gmail → conecta tu cuenta → copia Service ID
+// 3. "Email Templates" → Create Template → pega este asunto:
+//    "ALERTA {{nivel}} — {{nombre}} — Breathing Space"
+//    Cuerpo: Nombre: {{nombre}} | Cédula: {{cedula}} | Tel: {{telefono}} | Motivo: {{motivo}} | Nivel: {{nivel}} | Hora: {{hora}}
+// 4. Copia Template ID
+// 5. "Account" → copia Public Key
+// 6. Reemplaza TU_PUBLIC_KEY, TU_SERVICE_ID, TU_TEMPLATE_ID arriba
+//
+// WHATSAPP (Callmebot — gratis):
+// 1. En tu WhatsApp agrega el contacto: +34 644 597 787 (nombre: CallMeBot)
+// 2. Envíale exactamente: I allow callmebot to send me messages
+// 3. Te responde con tu API Key (un número)
+// 4. Reemplaza TU_APIKEY arriba
+// ─────────────────────────────────────────
 
 function buildAlertSummary(level){
   var hora = new Date().toLocaleString("es-CO",{timeZone:"America/Bogota",hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit",year:"numeric"});
-  var motivos = {tristeza:"Tristeza / sin esperanza",ansiedad:"Ansiedad / ataques de pánico",estres:"Estrés laboral intenso",vacio:"Vacío / desconexión",crisis:"Pensamientos de hacerse daño",funcional:"No puede dormir / no funciona"};
-  var duraciones = {agudo:"Esta semana",subagudo:"2-4 semanas",cronico:"Meses o más",agudo_intenso:"Inicio súbito muy intenso",impacto_alto:"Impacto en trabajo/estudio",aislamiento:"Aislamiento social"};
-  var segurid = {seguro:"Está a salvo",pasivo:"Pensamientos negativos no activos",crisis:"REQUIERE INTERVENCIÓN URGENTE",incierto:"No sabe si está en peligro"};
+  var motivos   = {tristeza:"Tristeza/sin esperanza",ansiedad:"Ansiedad/pánico",estres:"Estrés laboral",vacio:"Vacío/desconexión",crisis:"Pensamientos de hacerse daño",funcional:"No puede dormir/funcionar"};
+  var duraciones = {agudo:"Esta semana",subagudo:"2-4 semanas",cronico:"Meses o más",agudo_intenso:"Inicio súbito",impacto_alto:"Impacta trabajo",aislamiento:"Aislamiento social"};
+  var segurid   = {seguro:"A salvo",pasivo:"Pensamientos negativos no activos",crisis:"⚠️ URGENTE — REQUIERE INTERVENCIÓN",incierto:"No sabe si está en peligro"};
   return {
     hora:hora,
-    nombre:   USER_INFO.nombre   || "No registrado",
-    cedula:   USER_INFO.cedula   || "No registrado",
-    telefono: USER_INFO.telefono || "No registrado",
-    motivo:   motivos[triageAnswers["q1"]]   || triageAnswers["q1"]   || "no especificado",
-    duracion: duraciones[triageAnswers["q2"]] || triageAnswers["q2"] || "no especificado",
-    seguridad:segurid[triageAnswers["q3"]]   || triageAnswers["q3"]   || "no especificado",
+    nombre:    USER_INFO.nombre   || "No registrado",
+    cedula:    USER_INFO.cedula   || "No registrado",
+    telefono:  USER_INFO.telefono || "No registrado",
+    motivo:    motivos[triageAnswers["q1"]]    || triageAnswers["q1"]    || "no especificado",
+    duracion:  duraciones[triageAnswers["q2"]] || triageAnswers["q2"]    || "no especificado",
+    seguridad: segurid[triageAnswers["q3"]]   || triageAnswers["q3"]    || "no especificado",
     nivel:level
   };
 }
 
-// ── Envío silencioso WA via Callmebot (no abre nada en el celular del usuario) ──
-function sendSilentWA(level){
-  var s = buildAlertSummary(level);
-  var emoji = level==="ALTA"?"🔴":level==="MODERADA"?"🟡":"🟢";
-  var msg = "🆘 ALERTA BREATHING SPACE"
-    +" | "+COMPANY
-    +" | Riesgo: "+emoji+" "+level
-    +" | COLABORADOR: "+s.nombre
-    +" | Cédula: "+s.cedula
-    +" | Tel: "+s.telefono
-    +" | Motivo: "+s.motivo
-    +" | Duración: "+s.duracion
-    +" | Seguridad: "+s.seguridad
-    +" | Hora: "+s.hora
-    +" | "+(level==="ALTA"?"⚠️ CONTACTAR INMEDIATAMENTE":"Hacer seguimiento pronto");
-
-  if(CALLMEBOT_KEY==="TU_APIKEY"){
-    console.warn("Breathing Space: configura tu CALLMEBOT_KEY para alertas WA");
+// ── EMAIL silencioso via EmailJS ──
+function sendSilentEmail(level){
+  if(EMAILJS_PUBLIC_KEY==="TU_PUBLIC_KEY"){
+    console.warn("⚙️ Breathing Space: configura EmailJS para recibir alertas por correo");
+    showAdminSetupHint("email");
     return;
   }
-  fetch("https://api.callmebot.com/whatsapp.php?phone="+ADMIN_WA+"&text="+encodeURIComponent(msg)+"&apikey="+CALLMEBOT_KEY,{mode:"no-cors"})
-    .catch(function(){});
-}
-
-// ── Envío silencioso Email via FormSubmit (no abre nada en el celular del usuario) ──
-function sendSilentEmail(level){
   var s = buildAlertSummary(level);
-  var emoji = level==="ALTA"?"🔴 URGENTE":level==="MODERADA"?"🟡 MODERADO":"🟢 PREVENTIVO";
+  var emoji = level==="ALTA"?"🔴":level==="MODERADA"?"🟡":"🟢";
   var accion = level==="ALTA"
-    ?"Contactar al colaborador INMEDIATAMENTE. Activar protocolo de crisis con EPS/ARL si es necesario."
-    :level==="MODERADA"
-    ?"Contactar al colaborador hoy o mañana. Agendar sesión con especialista esta semana."
-    :"Seguimiento preventivo esta semana.";
+    ?"CONTACTAR INMEDIATAMENTE. Activar protocolo de crisis con EPS/ARL."
+    :level==="MODERADA"?"Contactar esta semana, agendar sesión."
+    :"Seguimiento preventivo.";
 
-  fetch("https://formsubmit.co/ajax/"+ADMIN_EMAIL,{
-    method:"POST",
-    headers:{"Content-Type":"application/json","Accept":"application/json"},
-    body:JSON.stringify({
-      _subject:"[BREATHING SPACE] ALERTA "+emoji+" — "+s.nombre+" — "+COMPANY,
-      empresa:              COMPANY,
-      nivel_riesgo:         level,
-      hora:                 s.hora,
-      colaborador_nombre:   s.nombre,
-      colaborador_cedula:   s.cedula,
-      colaborador_telefono: s.telefono,
-      motivo_consulta:      s.motivo,
-      duracion_malestar:    s.duracion,
-      estado_seguridad:     s.seguridad,
-      accion_recomendada:   accion,
-      nota:"Informacion confidencial — solo personal autorizado de Bienestar"
-    })
-  })
-  .then(function(r){console.log("Email alerta enviado:",r.status);})
-  .catch(function(e){console.log("Email fallback:",e);});
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    to_email:  ADMIN_EMAIL,
+    empresa:   COMPANY,
+    nivel:     emoji+" "+level,
+    nombre:    s.nombre,
+    cedula:    s.cedula,
+    telefono:  s.telefono,
+    motivo:    s.motivo,
+    duracion:  s.duracion,
+    seguridad: s.seguridad,
+    hora:      s.hora,
+    accion:    accion
+  }, EMAILJS_PUBLIC_KEY)
+  .then(function(){console.log("✅ Email de alerta enviado");})
+  .catch(function(e){console.error("❌ Email error:",e);});
 }
 
-// ── Función principal: notifica en silencio, usuario nunca ve nada ──
+// ── WhatsApp silencioso via Callmebot ──
+function sendSilentWA(level){
+  if(CALLMEBOT_KEY==="TU_APIKEY"){
+    console.warn("⚙️ Breathing Space: configura Callmebot para alertas por WhatsApp");
+    showAdminSetupHint("wa");
+    return;
+  }
+  var s = buildAlertSummary(level);
+  var emoji = level==="ALTA"?"🔴":level==="MODERADA"?"🟡":"🟢";
+  var msg = "🆘 ALERTA "+COMPANY
+    +"\nNivel: "+emoji+" "+level
+    +"\nNombre: "+s.nombre
+    +"\nCedula: "+s.cedula
+    +"\nTel: "+s.telefono
+    +"\nMotivo: "+s.motivo
+    +"\nSeguridad: "+s.seguridad
+    +"\nHora: "+s.hora
+    +"\n"+(level==="ALTA"?"⚠️ CONTACTAR INMEDIATAMENTE":"Hacer seguimiento pronto");
+
+  var url = "https://api.callmebot.com/whatsapp.php?phone="+ADMIN_WA
+    +"&text="+encodeURIComponent(msg)
+    +"&apikey="+CALLMEBOT_KEY;
+  fetch(url,{mode:"no-cors"}).catch(function(){});
+}
+
+// ── Aviso de configuración pendiente (solo visible en consola dev) ──
+function showAdminSetupHint(tipo){
+  // Muestra panel de configuración si la URL tiene ?adminsetup=1
+  if(window.location.search.indexOf("adminsetup=1")<0) return;
+  var panel = document.getElementById("admin-setup-panel");
+  if(panel) panel.style.display="block";
+}
+
+// ── Función principal silenciosa ──
 function notifyAdminSilently(level){
   sendSilentWA(level);
   sendSilentEmail(level);
 }
 
-// notifyHR ya no se usa públicamente pero se conserva por compatibilidad
-function notifyHR(level){
-  notifyAdminSilently(level||"ALTA");
+function notifyHR(level){ notifyAdminSilently(level||"ALTA"); }
+
+// ── PANEL DE PRUEBA — solo visible en ?adminsetup=1 ──
+function initAdminPanel(){
+  if(window.location.search.indexOf("adminsetup=1")<0) return;
+  var el = document.createElement("div");
+  el.id = "admin-setup-panel";
+  el.style.cssText = "position:fixed;bottom:100px;right:16px;z-index:9999;background:white;border:2px solid #1a4a6b;border-radius:16px;padding:16px;width:280px;box-shadow:0 8px 32px rgba(0,0,0,.2);font-family:Inter,sans-serif";
+  el.innerHTML = "<p style='font-size:11px;font-weight:700;color:#1a4a6b;text-transform:uppercase;margin-bottom:8px'>🔧 Panel Admin — Prueba de alertas</p>"
+    +"<p style='font-size:12px;color:#4a5568;margin-bottom:12px'>Estado de configuración:</p>"
+    +"<div style='font-size:12px;line-height:2;margin-bottom:12px'>"
+    +(EMAILJS_PUBLIC_KEY!=="TU_PUBLIC_KEY"?"✅":"❌")+" EmailJS: "+(EMAILJS_PUBLIC_KEY!=="TU_PUBLIC_KEY"?"Configurado":"Pendiente")+"<br/>"
+    +(CALLMEBOT_KEY!=="TU_APIKEY"?"✅":"❌")+" Callmebot WA: "+(CALLMEBOT_KEY!=="TU_APIKEY"?"Configurado":"Pendiente")
+    +"</div>"
+    +"<button onclick='testAlert()' style='width:100%;padding:10px;background:#1a4a6b;color:white;border:none;border-radius:99px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:6px'>🧪 Enviar alerta de prueba</button>"
+    +"<button onclick='this.parentElement.style.display=\"none\"' style='width:100%;padding:8px;background:none;border:1px solid #e8eaf0;border-radius:99px;font-size:12px;cursor:pointer;color:#767c7e'>Cerrar</button>";
+  document.body.appendChild(el);
+}
+
+function testAlert(){
+  USER_INFO = {nombre:"Usuario de Prueba",cedula:"123456789",telefono:"3174502653"};
+  triageAnswers = {q1:"ansiedad",q2:"subagudo",q3:"pasivo"};
+  riskScore = 5;
+  notifyAdminSilently("MODERADA");
+  alert("✅ Alerta de prueba enviada. Revisa tu correo y WhatsApp en 1-2 minutos.");
 }
 
 function restartChat(){
@@ -1323,6 +1378,7 @@ function setQuote(){
 // ═══ INIT ═══
 navTo('dashboard');
 setQuote();
+initAdminPanel();
 </script>
 </body>
 </html>
